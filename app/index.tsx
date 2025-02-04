@@ -1,12 +1,21 @@
-import { View, Text } from "react-native";
+import { Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
-const index = () => {
+const AuthScreen = () => {
 	return (
-		<View>
-			<Text className="bg-red-400">index</Text>
-		</View>
+		<SafeAreaView>
+			<ScrollView>
+				<Text>Welcome Back!</Text>
+				<TouchableOpacity
+					onPress={() => router.push("/(root)/(tabs)/home")}
+				>
+					<Text>Go to homescreen</Text>
+				</TouchableOpacity>
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 
-export default index;
+export default AuthScreen;
