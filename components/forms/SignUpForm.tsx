@@ -37,6 +37,22 @@ const SignUpForm: React.FC<SignUpForm> = ({ handleSignUpForm }) => {
 				<View>
 					<View className="gap-3">
 						<CustomInput
+							name="name"
+							placeholder="Name"
+							control={control}
+						/>
+						<CustomInput
+							name="surname"
+							placeholder="Surname"
+							control={control}
+						/>
+						<CustomInput
+							name="phone"
+							placeholder="Phone Number"
+							control={control}
+							keyboardType="number-pad"
+						/>
+						<CustomInput
 							name="email"
 							placeholder="Email"
 							control={control}
@@ -57,10 +73,8 @@ const SignUpForm: React.FC<SignUpForm> = ({ handleSignUpForm }) => {
 				</View>
 
 				<CustomButton
-					label="LOGIN"
-					onPress={() => {
-						handleSubmit(onSubmit);
-					}}
+					label="REGISTER"
+					onPress={handleSubmit(onSubmit)}
 					fullWidth
 					disabled={false}
 					buttonStyles="bg-primary-300"
