@@ -67,7 +67,7 @@ const SignUpForm: React.FC<SignUpForm> = ({ handleSignUpForm }) => {
 					</View>
 					<Pressable className="mt-1" onPress={handleSignUpForm}>
 						<Text className="text-black-100 text-sm font-rubik">
-							I don't have an account
+							I already have an account
 						</Text>
 					</Pressable>
 				</View>
