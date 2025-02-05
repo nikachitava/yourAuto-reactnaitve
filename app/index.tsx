@@ -38,6 +38,7 @@ const AuthScreen = () => {
 						onPress={() => router.push("/(root)/(tabs)/home")}
 						disabled={false}
 						fullWidth={true}
+						iconAlign="right"
 					/>
 				</View>
 			</ScrollView>

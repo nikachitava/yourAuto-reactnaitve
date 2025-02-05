@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -11,6 +11,7 @@ export const CustomButton: React.FC<CustomButtonTypes> = ({
 	buttonStyles,
 	textStyles,
 	iconColor,
+	iconAlign = "left",
 	disabled = false,
 	fullWidth = true,
 }) => {
@@ -22,17 +23,25 @@ export const CustomButton: React.FC<CustomButtonTypes> = ({
 			onPress={onPress}
 			disabled={disabled}
 		>
-			{icon && (
+			{iconAlign === "left" && icon && (
 				<AntDesign
 					name={icon}
 					size={20}
 					color={`${iconColor}`}
-					style={{ marginRight: 8 }}
+					style={{ marginRight: 12 }}
 				/>
 			)}
 			<Text className={`text-center font-rubik-semibold ${textStyles}`}>
 				{label}
 			</Text>
+			{iconAlign === "right" && icon && (
+				<AntDesign
+					name={icon}
+					size={20}
+					color={`${iconColor}`}
+					style={{ marginLeft: 12 }}
+				/>
+			)}
 		</TouchableOpacity>
 	);
 };

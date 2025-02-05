@@ -9,4 +9,5 @@ export interface CustomButtonTypes {
 	label: string;
 	disabled: boolean,
 	fullWidth: boolean,
+    iconAlign?: "left" | "right"
 }
