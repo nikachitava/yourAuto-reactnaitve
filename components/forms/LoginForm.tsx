@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CustomButton } from "../ui/CustomButton";
 import { router } from "expo-router";
+import { useLogin } from "@/service/api/mutations/useLogin";
 
 interface LoginForm {
 	handleSignUpForm: () => void;
@@ -20,8 +21,13 @@ const LoginForm: React.FC<LoginForm> = ({ handleSignUpForm }) => {
 			password: "",
 		},
 	});
+
+	const login = useLogin();
+
 	const onSubmit = (data: any) => {
-		router.push({ pathname: "/home", params: data });
+		login.mutate(data, {
+			onSuccess: (access_token) => {},
+		});
 	};
 	return (
 		<View>
