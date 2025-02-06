@@ -6,27 +6,47 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CustomButton } from "../ui/CustomButton";
+import { useSignUp } from "@/service/api/mutations/useSignUp";
 
 interface SignUpForm {
 	handleSignUpForm: () => void;
 }
 
 const SignUpForm: React.FC<SignUpForm> = ({ handleSignUpForm }) => {
-	const { control, handleSubmit } = useForm<z.infer<typeof SignUpFormSchema>>(
-		{
-			resolver: zodResolver(SignUpFormSchema),
-			defaultValues: {
-				name: "",
-				surname: "",
-				phone: "",
-				email: "",
-				password: "",
-			},
-		}
-	);
+	const { control, handleSubmit, setError } = useForm<
+		z.infer<typeof SignUpFormSchema>
+	>({
+		resolver: zodResolver(SignUpFormSchema),
+		defaultValues: {
+			name: "",
+			surname: "",
+			phone: "",
+			email: "",
+			password: "",
+		},
+	});
 
-	const onSubmit = (data: any) => {
-		console.log("data: ", data);
+	const signup = useSignUp();
+
+	const onSubmit = (data: z.infer<typeof SignUpFormSchema>) => {
+		console.log(data);
+		signup.mutate(data, {
+			onError: (error: any) => {
+				if (error.response) {
+					const errorMessage =
+						error.response.data.message || "Signup failed";
+					setError("root", {
+						type: "manual",
+						message: errorMessage,
+					});
+				} else {
+					setError("root", {
+						type: "manual",
+						message: "An unexpected error occurred",
+					});
+				}
+			},
+		});
 	};
 	return (
 		<View>
@@ -64,6 +84,12 @@ const SignUpForm: React.FC<SignUpForm> = ({ handleSignUpForm }) => {
 							control={control}
 							secureTextEntry
 						/>
+						{signup.isError && (
+							<Text className="text-red-500 mb-4">
+								{signup.error?.message ||
+									"An error occurred during signup"}
+							</Text>
+						)}
 					</View>
 					<Pressable className="mt-1" onPress={handleSignUpForm}>
 						<Text className="text-black-100 text-sm font-rubik">
