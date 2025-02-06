@@ -1,12 +1,28 @@
 import { Text, ScrollView, Image, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 
 import vehicleIcon from "../assets/icons/vehicle.png";
 import { CustomButton } from "@/components/ui/CustomButton";
+import { getToken } from "@/service/storage/authToken";
 
 const AuthScreen = () => {
+	const fetchToken = async () => {
+		try {
+			const token = await getToken();
+			if (token) {
+				router.push("/(root)/(tabs)/home");
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	useEffect(() => {
+		fetchToken();
+	}, []);
+
 	return (
 		<SafeAreaView className="h-full">
 			<ScrollView

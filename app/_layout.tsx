@@ -26,9 +26,6 @@ export default function RootLayout() {
 		}
 	}, [fontsLoaded]);
 
-	if (!fontsLoaded) {
-		return null;
-	}
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Stack screenOptions={{ headerShown: false }} />
