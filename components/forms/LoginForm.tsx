@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CustomButton } from "../ui/CustomButton";
-import { router } from "expo-router";
 import { useLogin } from "@/service/api/mutations/useLogin";
 
 interface LoginForm {
@@ -14,7 +13,9 @@ interface LoginForm {
 }
 
 const LoginForm: React.FC<LoginForm> = ({ handleSignUpForm }) => {
-	const { control, handleSubmit } = useForm<z.infer<typeof LoginFormSchema>>({
+	const { control, handleSubmit, setError } = useForm<
+		z.infer<typeof LoginFormSchema>
+	>({
 		resolver: zodResolver(LoginFormSchema),
 		defaultValues: {
 			email: "",
@@ -26,7 +27,21 @@ const LoginForm: React.FC<LoginForm> = ({ handleSignUpForm }) => {
 
 	const onSubmit = (data: any) => {
 		login.mutate(data, {
-			onSuccess: (access_token) => {},
+			onError: (error: any) => {
+				if (error.response) {
+					const errorMessage =
+						error.response.data.message || "Login failed";
+					setError("root", {
+						type: "manual",
+						message: errorMessage,
+					});
+				} else {
+					setError("root", {
+						type: "manual",
+						message: "An unexpected error occurred",
+					});
+				}
+			},
 		});
 	};
 	return (
@@ -49,7 +64,14 @@ const LoginForm: React.FC<LoginForm> = ({ handleSignUpForm }) => {
 							control={control}
 							secureTextEntry
 						/>
+						{login.isError && (
+							<Text className="text-red-500 mb-4">
+								{login.error?.message ||
+									"An error occurred during signup"}
+							</Text>
+						)}
 					</View>
+
 					<Pressable className="mt-1" onPress={handleSignUpForm}>
 						<Text className="text-black-100 text-sm font-rubik">
 							I don't have an account
