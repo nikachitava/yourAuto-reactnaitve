@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import { View, FlatList } from "react-native";
 import React from "react";
 import { useVehicles } from "@/service/api/queries/useVehicles";
 import { SafeAreaView } from "react-native-safe-area-context";
