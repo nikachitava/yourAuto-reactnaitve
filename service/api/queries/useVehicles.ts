@@ -1,8 +1,9 @@
 import { useAxios } from "@/hooks/useAxios"
+import { IVehicle } from "@/types/VehicleTypes"
 import { useQuery } from "@tanstack/react-query"
 
 export const useVehicles = () => {
-    return useQuery({
+    return useQuery<IVehicle[], Error>({
         queryKey: ['vehicles'],
         queryFn: fetchVehicles
     })
