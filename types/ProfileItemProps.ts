@@ -4,4 +4,5 @@ export interface ProfileItemProps {
     title: string;
     isArrow?: boolean;
     onPress: ()=> void;
+    textStyle: string;
 }
