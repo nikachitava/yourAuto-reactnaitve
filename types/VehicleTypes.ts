@@ -31,6 +31,7 @@ export interface IOwner {
 }
 
 export interface IVehicleCardProps {
+    _id: string;
     brand: string;
     model: string;
     fuelType: string;

@@ -7,8 +7,10 @@ import {
 	FontAwesome,
 } from "@expo/vector-icons";
 import { IVehicleCardProps } from "@/types/VehicleTypes";
+import { router } from "expo-router";
 
 const VehicleCard: React.FC<IVehicleCardProps> = ({
+	_id,
 	image,
 	price,
 	brand,
@@ -27,7 +29,12 @@ const VehicleCard: React.FC<IVehicleCardProps> = ({
 
 	return (
 		<TouchableOpacity
-			onPress={() => {}}
+			onPress={() => {
+				router.push({
+					pathname: "/(root)/vehicle/[id]",
+					params: { id: _id },
+				});
+			}}
 			className="bg-white rounded-2xl overflow-hidden mb-4 shadow-md"
 		>
 			<View className="relative h-[200px]">
