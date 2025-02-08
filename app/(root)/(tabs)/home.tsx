@@ -18,6 +18,7 @@ const HomeScreen = () => {
 				data={vehicles}
 				renderItem={({ item }) => (
 					<VehicleCard
+						_id={item._id}
 						brand={item.brand}
 						fuelType={item.fuelType}
 						gearBox={item.gearBox}
