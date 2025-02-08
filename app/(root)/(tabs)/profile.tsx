@@ -23,6 +23,9 @@ const ProfileScreen = () => {
 	return (
 		<SafeAreaView className="flex-1 px-4">
 			<ScrollView className="flex-1">
+				<View>
+					<Text>Profile</Text>
+				</View>
 				<View className="flex-row items-center justify-between py-4">
 					<Text className="font-rubik-semibold">Profile</Text>
 					<AntDesign name="bells" size={18} color="#191D31" />
