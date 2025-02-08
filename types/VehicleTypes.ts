@@ -31,14 +31,14 @@ export interface IOwner {
 }
 
 export interface IVehicleCardProps {
-owner: IOwner;
-title: string;
-brand: string;
-fuelType: string;
-price: string;
-gearBox: string;
-mileage: string;
-image: string;
+    brand: string;
+    model: string;
+    fuelType: string;
+    price: string;
+    gearBox: string;
+    mileage: string;
+    image: string[];
+    year: string;
 }
 
 export type VehicleBrands =

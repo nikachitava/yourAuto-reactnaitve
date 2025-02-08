@@ -1,19 +1,22 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { IVehicle } from "@/types/VehicleTypes";
-import { AntDesign } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+	AntDesign,
+	MaterialCommunityIcons,
+	FontAwesome,
+} from "@expo/vector-icons";
+import { IVehicleCardProps } from "@/types/VehicleTypes";
 
-const VehicleCard: React.FC<IVehicle> = ({
-	_id,
+const VehicleCard: React.FC<IVehicleCardProps> = ({
 	image,
-	title,
 	price,
 	brand,
-	model,
 	mileage,
-	year,
-	driveType,
+	model,
+	gearBox,
 	fuelType,
+	year,
 }) => {
 	const imageSource =
 		typeof image === "string"
@@ -23,49 +26,70 @@ const VehicleCard: React.FC<IVehicle> = ({
 			: undefined;
 
 	return (
-		<View className="bg-white rounded-2xl overflow-hidden shadow-md mb-4">
-			<View className="relative">
-				{imageSource && (
-					<Image
-						source={imageSource}
-						className="w-full h-48"
-						resizeMode="cover"
-					/>
-				)}
+		<TouchableOpacity
+			onPress={() => {}}
+			className="bg-white rounded-2xl overflow-hidden mb-4 shadow-md"
+		>
+			<View className="relative h-[200px]">
+				<Image
+					source={imageSource}
+					className="w-full h-full"
+					resizeMode="cover"
+				/>
+				<LinearGradient
+					colors={["rgba(0,0,0,0.7)", "transparent"]}
+					className="absolute left-0 right-0 top-0 h-1/2"
+				/>
+				<View className="absolute top-4 right-4 bg-white/90 px-3 py-2 rounded-full">
+					<Text className="text-blue-500 text-base font-rubik-bold">
+						{year}
+					</Text>
+				</View>
+				<TouchableOpacity className="absolute top-4 left-4">
+					<FontAwesome name="heart-o" size={24} color="white" />
+				</TouchableOpacity>
 			</View>
 
 			<View className="p-4">
-				<View className="flex-row justify-between items-center mb-2">
-					<Text className="text-xl font-bold">{`${year} ${brand} ${model}`}</Text>
-					<Text className="text-blue-600 font-bold text-lg">
-						${price?.toLocaleString()}
-					</Text>
-				</View>
+				<Text className="text-2xl text-slate-800 mb-2 font-rubik-extrabold">
+					{`${brand} ${model}`}
+				</Text>
+				<Text className="text-xl font-rubik-bold text-blue-500 mb-4">
+					{`$${price}`}
+				</Text>
 
-				<View className="flex-row items-center mb-3">
-					<AntDesign name="filter" size={24} color="#888" />
-					<Text className="ml-2 text-gray-600">
-						{mileage?.toLocaleString()} miles | {driveType}
-					</Text>
-				</View>
-
-				<View className="flex-row justify-between items-center">
-					<View className="flex-row space-x-2">
-						<View className="bg-blue-100 px-3 py-1 rounded-full">
-							<Text className="text-blue-600 text-xs">
-								{fuelType}
-							</Text>
-						</View>
+				<View className="justify-between gap-2">
+					<View className="flex-row items-center">
+						<AntDesign name="dashboard" size={20} color="#64748b" />
+						<Text className="ml-2 text-slate-500 text-base font-rubik-light">
+							{mileage} miles
+						</Text>
 					</View>
 
-					<TouchableOpacity className="bg-blue-500 px-4 py-2 rounded-full">
-						<Text className="text-white font-semibold">
-							View Details
+					<View className="flex-row items-center">
+						<MaterialCommunityIcons
+							name="car-brake-fluid-level"
+							size={20}
+							color="#64748b"
+						/>
+						<Text className="ml-2 text-slate-500 text-base font-rubik-light">
+							{gearBox}
 						</Text>
-					</TouchableOpacity>
+					</View>
+
+					<View className="flex-row items-center">
+						<MaterialCommunityIcons
+							name="fuel"
+							size={20}
+							color="#64748b"
+						/>
+						<Text className="ml-2 text-slate-500 text-base font-rubik-light">
+							{fuelType}
+						</Text>
+					</View>
 				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 

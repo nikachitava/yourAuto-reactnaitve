@@ -18,28 +18,14 @@ const HomeScreen = () => {
 				data={vehicles}
 				renderItem={({ item }) => (
 					<VehicleCard
-						_id={item._id}
 						brand={item.brand}
-						color={item.color}
-						condition={item.color}
-						cylinder={item.cylinder}
-						description={item.description}
-						door={item.door}
-						driveType={item.driveType}
-						engine={item.engine}
 						fuelType={item.fuelType}
 						gearBox={item.gearBox}
 						image={item.image}
 						mileage={item.mileage}
 						model={item.model}
-						owner={item.owner}
 						price={item.price}
-						status={item.status}
-						title={item.title}
-						type={item.type}
-						vin={item.vin}
 						year={item.year}
-						key={item._id}
 					/>
 				)}
 				keyExtractor={(vehicle) => vehicle._id}
