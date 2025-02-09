@@ -1,12 +1,14 @@
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import React from "react";
 import { useVehicles } from "@/service/api/queries/useVehicles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import VehicleCard from "@/components/ui/VehicleCard";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import useUser from "@/hooks/useUser";
 
 const HomeScreen = () => {
 	const { data: vehicles, error, isLoading } = useVehicles();
+	const { user } = useUser();
 
 	if (error) return null;
 
@@ -29,6 +31,14 @@ const HomeScreen = () => {
 						year={item.year}
 					/>
 				)}
+				showsVerticalScrollIndicator={false}
+				ListHeaderComponent={
+					<View className="mb-2">
+						<Text className="font-rubik-bold text-black-300 text-xl">
+							Welcome, {user?.name}
+						</Text>
+					</View>
+				}
 				keyExtractor={(vehicle) => vehicle._id}
 				ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
 				contentContainerStyle={{

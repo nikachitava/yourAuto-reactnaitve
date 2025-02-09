@@ -10,11 +10,13 @@ import {
 } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileItem from "@/components/ui/ProfileItem";
+import { removeUserData } from "@/service/storage/userData";
 
 const ProfileScreen = () => {
 	const handleLogoOut = async () => {
 		try {
 			await removeToken();
+			await removeUserData();
 			router.push("/auth");
 		} catch (error) {
 			console.error(error);
