@@ -1,21 +1,35 @@
 import { useAxios } from "@/hooks/useAxios"
 import { storeToken } from "@/service/storage/authToken"
+import { saveUserData } from "@/service/storage/userData"
 import { LoginData } from "@/types/LoginData"
+import { UserType } from "@/types/UserType"
 import { useMutation } from "@tanstack/react-query"
 import axios, { AxiosError } from "axios"
 import { router } from "expo-router"
+import { jwtDecode } from 'jwt-decode'
 
 interface ErrorResponse {
     message: string;
     statusCode: number;
 }
 
+interface TokenPayload {
+    _id: string
+}
+
 export const useLogin = () => {
     
     return useMutation({
         mutationFn: login,
-        onSuccess: (access_token) => {
+        onSuccess: async (access_token: string) => {
             storeToken(access_token)
+
+            const decodedData = jwtDecode<TokenPayload & {_doc: UserType}>(access_token);
+
+
+            const userData = decodedData._doc; 
+            await saveUserData(userData);
+            
             router.replace("/(root)/(tabs)/home")
         }
     })
@@ -43,5 +57,14 @@ const login = async (data: LoginData) => {
         }
         
         throw new Error('An unexpected error occurred');
+    }
+}
+
+const fetchUser = async (_id: string) => {
+    try {
+        const { data } = await useAxios.get(`/users/${_id}`);
+        return data;
+    } catch (error) {
+        throw error;
     }
 }
