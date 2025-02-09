@@ -29,8 +29,8 @@ const LoginForm: React.FC<LoginForm> = ({ handleSignUpForm }) => {
 		login.mutate(data, {
 			onError: (error: any) => {
 				if (error.response) {
-					const errorMessage =
-						error.response.data.message || "Login failed";
+					const errorMessage = "Arasworia";
+					// error.response.message || "Login failed";
 					setError("root", {
 						type: "manual",
 						message: errorMessage,
