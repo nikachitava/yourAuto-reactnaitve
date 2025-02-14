@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import VehicleCard from "@/components/ui/VehicleCard";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import useUser from "@/hooks/useUser";
+import Search from "@/components/ui/Search";
 
 const HomeScreen = () => {
 	const { data: vehicles, error, isLoading } = useVehicles();
@@ -33,10 +34,11 @@ const HomeScreen = () => {
 				)}
 				showsVerticalScrollIndicator={false}
 				ListHeaderComponent={
-					<View className="mb-2">
+					<View className="mb-10">
 						<Text className="font-rubik-bold text-black-300 text-xl">
 							Welcome, {user?.name}
 						</Text>
+						<Search />
 					</View>
 				}
 				keyExtractor={(vehicle) => vehicle._id}
