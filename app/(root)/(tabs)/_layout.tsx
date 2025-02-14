@@ -25,6 +25,7 @@ const _layout = () => {
 				options={{
 					title: "Home",
 					headerShown: false,
+					tabBarHideOnKeyboard: true,
 					tabBarIcon: ({ focused }) => (
 						<TabIcon
 							focused={focused}
@@ -39,6 +40,7 @@ const _layout = () => {
 				options={{
 					title: "Listing",
 					headerShown: false,
+					tabBarHideOnKeyboard: true,
 					tabBarIcon: ({ focused }) => (
 						<TabIcon
 							focused={focused}
@@ -53,6 +55,7 @@ const _layout = () => {
 				options={{
 					title: "Profile",
 					headerShown: false,
+					tabBarHideOnKeyboard: true,
 					tabBarIcon: ({ focused }) => (
 						<TabIcon
 							focused={focused}
