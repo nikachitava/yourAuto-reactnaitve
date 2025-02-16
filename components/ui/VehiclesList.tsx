@@ -11,7 +11,7 @@ const VehiclesList = () => {
 	const { data: vehicles } = useVehicles();
 	const { user } = useUser();
 	const { brands, models, status } = useSearchFilterStore();
-	const [filteredVehicle, setFilteredVehicle] = useState<IVehicle[]>();
+	const [filteredVehicle, setFilteredVehicle] = useState<IVehicle[]>([]);
 
 	const filterVehicles = () => {
 		if (!vehicles) return;

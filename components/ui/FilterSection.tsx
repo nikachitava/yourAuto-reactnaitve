@@ -1,10 +1,4 @@
-import {
-	View,
-	Text,
-	TouchableOpacity,
-	ScrollView,
-	FlatList,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useSearchFilterStore } from "@/store/SearchFilterStore";
 
@@ -47,14 +41,18 @@ const FilterSection: React.FC<FilterSectionProps> = ({ title, options }) => {
 	};
 
 	return (
-		<View className="flex-1">
-			<FlatList
-				data={options}
-				keyExtractor={(item) => item}
+		<View>
+			<Text className="font-rubik-bold text-black-300 text-base">
+				{title}
+			</Text>
+			<ScrollView
 				horizontal
 				showsHorizontalScrollIndicator={false}
-				renderItem={({ item }) => (
+				contentContainerStyle={{ paddingHorizontal: 10 }}
+			>
+				{options.map((item) => (
 					<TouchableOpacity
+						key={item}
 						className={`px-4 py-2 rounded-xl m-1 ${
 							isSelected(item)
 								? "bg-primary-300"
@@ -72,15 +70,8 @@ const FilterSection: React.FC<FilterSectionProps> = ({ title, options }) => {
 							{item}
 						</Text>
 					</TouchableOpacity>
-				)}
-				ListHeaderComponent={
-					<View className="flex-1 bg-red-400">
-						<Text className="text-lg font-rubik-semibold text-black-600">
-							{title}
-						</Text>
-					</View>
-				}
-			/>
+				))}
+			</ScrollView>
 		</View>
 	);
 };
