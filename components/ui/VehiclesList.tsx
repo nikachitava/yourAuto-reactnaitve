@@ -48,30 +48,40 @@ const VehiclesList = () => {
 				</Text>
 				<Search />
 			</View>
-			<FlatList
-				data={filteredVehicle}
-				renderItem={({ item }) => (
-					<VehicleCard
-						_id={item._id}
-						brand={item.brand}
-						fuelType={item.fuelType}
-						gearBox={item.gearBox}
-						image={item.image}
-						mileage={item.mileage}
-						model={item.model}
-						price={item.price}
-						year={item.year}
-					/>
-				)}
-				showsVerticalScrollIndicator={false}
-				keyExtractor={(vehicle) => vehicle._id}
-				ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-				contentContainerStyle={{
-					paddingTop: 20,
-					paddingHorizontal: 16,
-					paddingBottom: 80,
-				}}
-			/>
+			{filteredVehicle.length === 0 ? (
+				<View className="px-5 h-20">
+					<Text className="font-rubik-bold text-black-300">
+						Can't find that filtered car
+					</Text>
+				</View>
+			) : (
+				<FlatList
+					data={filteredVehicle}
+					renderItem={({ item }) => (
+						<VehicleCard
+							_id={item._id}
+							brand={item.brand}
+							fuelType={item.fuelType}
+							gearBox={item.gearBox}
+							image={item.image}
+							mileage={item.mileage}
+							model={item.model}
+							price={item.price}
+							year={item.year}
+						/>
+					)}
+					showsVerticalScrollIndicator={false}
+					keyExtractor={(vehicle) => vehicle._id}
+					ItemSeparatorComponent={() => (
+						<View style={{ height: 10 }} />
+					)}
+					contentContainerStyle={{
+						paddingTop: 20,
+						paddingHorizontal: 16,
+						paddingBottom: 80,
+					}}
+				/>
+			)}
 		</View>
 	);
 };

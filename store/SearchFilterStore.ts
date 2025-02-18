@@ -1,9 +1,10 @@
 import { SearchFilterStore } from '@/types/SearchFilterStore'
+import { VehicleBrands } from '@/types/VehicleTypes'
 import { create } from 'zustand'
 
 export const useSearchFilterStore = create<SearchFilterStore>((set) => ({
     brands: [],
-    setBrands: (brand) => set((state) => ({
+    setBrands: (brand: VehicleBrands) => set((state) => ({
         brands: state.brands.includes(brand)
             ? state.brands.filter(item => item !== brand)
             : [...state.brands, brand]

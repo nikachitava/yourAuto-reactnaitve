@@ -2,7 +2,7 @@ export interface IVehicle {
     _id: string;
     owner: IOwner;
     title: string;
-    brand: string;
+    brand: VehicleBrands;
     model: string;
     type: string;
     status: string;

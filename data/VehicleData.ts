@@ -1,3 +1,6 @@
+type VehicleBrands = keyof typeof vehicleModels;
+export type VehicleModels = typeof vehicleModels[VehicleBrands];
+
 export const vehicleModels = {
     Toyota: ["Camry", "Corolla", "Highlander", "RAV4", "Tacoma", "Prius", "Land Cruiser"],
     Honda: ["Civic", "Accord", "CR-V", "Pilot", "Fit", "Odyssey", "HR-V"],
@@ -103,3 +106,8 @@ export const vehicleBrands = [
     "Skoda",
     "Opel",
 ];
+
+export const vehicleStatus = [
+    "Costums cleader",
+    "Before customs"
+]

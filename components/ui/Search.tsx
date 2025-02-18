@@ -1,12 +1,20 @@
 import { View, TextInput, TouchableOpacity, Modal } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FilterSection from "./FilterSection";
-import { vehicleModels, vehicleBrands } from "@/data/VehicleData";
+import {
+	vehicleModels,
+	vehicleBrands,
+	vehicleStatus,
+	VehicleModels,
+} from "@/data/VehicleData";
+import { useSearchFilterStore } from "@/store/SearchFilterStore";
+import { VehicleBrands } from "@/types/VehicleTypes";
 
 const Search = () => {
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const [search, setSearch] = useState<string>();
+	const [models, setModels] = useState<string[] | null>(null);
 
 	const handleFilterOpen = () => {
 		setIsFilterOpen((isFilterOpen) => !isFilterOpen);
@@ -15,6 +23,17 @@ const Search = () => {
 	const handleSearch = (text: string) => {
 		setSearch(text);
 	};
+
+	const { brands } = useSearchFilterStore();
+
+	const getVehicleModels = (brands: VehicleBrands[]): VehicleModels => {
+		return brands.flatMap((brand) => vehicleModels[brand]);
+	};
+
+	useEffect(() => {
+		const models = getVehicleModels(brands);
+		setModels(models);
+	}, [brands]);
 
 	return (
 		<View>
@@ -55,9 +74,15 @@ const Search = () => {
 								title="Brands"
 								options={vehicleBrands}
 							/>
+							{brands.length > 0 && (
+								<FilterSection
+									title="Models"
+									options={models as string[]}
+								/>
+							)}
 							<FilterSection
-								title="Models"
-								options={vehicleModels.Acura}
+								title="Status"
+								options={vehicleStatus}
 							/>
 						</View>
 					</TouchableOpacity>

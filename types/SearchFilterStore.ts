@@ -1,6 +1,8 @@
+import { VehicleBrands } from "./VehicleTypes";
+
 export interface SearchFilterStore {
-    brands: string[];
-    setBrands: (brand: string) => void;
+    brands: VehicleBrands[];
+    setBrands: (brand: VehicleBrands) => void;
     models: string[];
     setModels: (model:string) => void;
     minYear: number;
