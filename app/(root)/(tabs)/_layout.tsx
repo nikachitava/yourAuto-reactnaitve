@@ -45,7 +45,7 @@ const _layout = () => {
 						<TabIcon
 							focused={focused}
 							icon={vehicleIcon}
-							title="Listing"
+							title="Add Listing"
 						/>
 					),
 				}}
