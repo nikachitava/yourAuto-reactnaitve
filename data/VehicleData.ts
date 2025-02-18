@@ -1,6 +1,55 @@
 type VehicleBrands = keyof typeof vehicleModels;
 export type VehicleModels = typeof vehicleModels[VehicleBrands];
 
+export const vehicleTypes = [
+    "Convertible (CV)",
+    "Coupe",
+    "Sedan",
+    "Hatchback",
+    "SUV (Sport Utility Vehicle)",
+    "Truck",
+    "Minivan",
+    "Pickup Truck",
+    "Wagon",
+    "Crossover",
+    "Roadster",
+    "Van",
+    "Motorcycle",
+    "Electric Vehicle (EV)",
+    "Hybrid",
+];
+
+export const carStatus = ["განბაჟებული", "განუბაჟებელი"]
+
+export const fuelTypes = [
+    "Petrol",
+    "Diesel",
+    "Electric",
+    "Hybrid (Petrol/Electric)",
+    "Hybrid (Diesel/Electric)",
+    "CNG (Compressed Natural Gas)",
+    "LPG (Liquefied Petroleum Gas)",
+    "Hydrogen Fuel Cell",
+    "Biofuel",
+    "Ethanol",
+    "Biodiesel",
+    "Flex Fuel",
+];
+
+export const gearboxTypes = [
+    "Manual",
+    "Automatic",
+    "Semi-Automatic",
+    "CVT (Continuously Variable Transmission)",
+    "Dual-Clutch",
+    "Tiptronic",
+    "AMT (Automated Manual Transmission)",
+    "DSG (Direct-Shift Gearbox)",
+    "Torque Converter",
+    "Sequential",
+    "Electric Drive",
+];
+
 export const vehicleModels = {
     Toyota: ["Camry", "Corolla", "Highlander", "RAV4", "Tacoma", "Prius", "Land Cruiser"],
     Honda: ["Civic", "Accord", "CR-V", "Pilot", "Fit", "Odyssey", "HR-V"],
